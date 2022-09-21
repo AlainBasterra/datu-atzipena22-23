@@ -1,7 +1,7 @@
 package com.dambi;
 
 /**
- * Hello world!
+ * Hello world! imprimatzen du
  *
  */
 public class App 

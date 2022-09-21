@@ -1,29 +1,27 @@
 package com.dambi;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-// CopyBytes berdina, baina kasu honetan, programa ez bada kapaz xanadu fitxategia aurkitzeko, errore mezu bat agertuko da esaten "Fitxategia ez da aurkitu".
+    //xanadu.txt fitxategia irakurri eta fitxategiko Byte-ak banaka kopiatzen hasten da. Byte-ak c deitzen de aldagai batetan gordetzen du eta outagain.txt
+    // deitzen den fitxategi bat sortu eta bertan pegatzen egoten da, horrela xanadu fitxategi osoa kopiatu arte
 
-public class CopyBytesFNEKontrolatuz {
+public class CopyBytes {
     public static void main(String[] args) throws IOException {
 
         FileInputStream in = null;
         FileOutputStream out = null;
 
-        try {
-            in = new FileInputStream("./xanadu.txt");
-            out = new FileOutputStream("outagain.txt");
+        try (in = new FileInputStream("./xanadu.txt");
+            out = new FileOutputStream("outagain.txt");) { //??
+            
             int c;
 
             while ((c = in.read()) != -1) {
                 out.write(c);
             }
-        }catch (FileNotFoundException exception) {
-            System.out.println("Fitxategia ez da aurkitu");
-          } finally {
+        } finally {
             if (in != null) {
                 in.close();
             }

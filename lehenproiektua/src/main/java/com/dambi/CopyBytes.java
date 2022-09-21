@@ -4,6 +4,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+    //xanadu.txt fitxategia irakurri eta fitxategiko Byte-ak banaka kopiatzen hasten da. Byte-ak c deitzen de aldagai batetan gordetzen du eta outagain.txt
+    // deitzen den fitxategi bat sortu eta bertan pegatzen egoten da, horrela xanadu fitxategi osoa kopiatu arte
+
 public class CopyBytes {
     public static void main(String[] args) throws IOException {
 
