@@ -69,27 +69,45 @@ public class MainMenua {
             int altueraF = 0;
             String kokalekua = "";
             String kokalekuaF = "";
+            boolean handiagoa = false;
             Scanner sc = new Scanner(new File("Mendiak.csv"));
             sc.useDelimiter(";");
-            while (sc.hasNext()) {
-                izena = sc.next();
-                izena = sc.next();
-                try {
+            izena = sc.next(); // 2 salto
+            izena = sc.next();
+            try {
+                while (sc.hasNext()) {
+                    if (!handiagoa) {
+                        try {
+                            String[] parts = sc.next().split("\n");
+                            kokalekua = parts[0];
+                            izena = parts[1];
+                        } catch (Exception e) {
+                            kokalekua = sc.next();
+                        }
+                    } else {
+                        handiagoa = false;
+                    }
                     altuera = sc.nextInt();
-                } catch (Exception e) {
-                    kokalekua = sc.next();
-                }
-                String[] parts = sc.next().split("\n");
-                kokalekua = parts[0];
 
-                izena = parts[1];
+                    if (altuera > altueraF) {
+                        handiagoa = true;
+                        izenaF = izena;
+                        altueraF = altuera;
+                        try {
+                            String[] parts = sc.next().split("\n");
+                            kokalekua = parts[0];
+                            izena = parts[1];
 
-                if (altuera > altueraF) {
-                    izenaF = izena;
-                    altueraF = altuera;
-                    kokalekuaF = kokalekua;
+                        } catch (Exception e) {
+                            kokalekua = sc.next();
+                        }
+                        kokalekuaF = kokalekua;
+
+                    }
                 }
+            } catch (Exception e) {
             }
+
             System.out.println(kokalekuaF + "-ko " + izenaF + " mendia da altuena, " + altueraF + "m-ko altuerarekin");
             sc.close();
 
