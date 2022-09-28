@@ -30,6 +30,9 @@ public class MainMenua {
                 case 2:
                     met2();
                     break;
+                case 3:
+                    met3();
+                    break;
                 case 5:
                     System.out.println("Eskerrik asko programa hau erabiltzeagatik.");
                     break;
@@ -114,6 +117,73 @@ public class MainMenua {
 
         } catch (FileNotFoundException exception) {
             System.out.println("Fitxategia ez da aurkitu");
+        }
+    }
+
+    public static void met3() throws IOException {
+        BufferedReader inputStream = null;
+        PrintWriter outputStreamBizkaia = null;
+        PrintWriter outputStreamAraba = null;
+        PrintWriter outputStreamNafarroa = null;
+        PrintWriter outputStreamGipuzkoa = null;
+
+        String kokalekua;
+
+        try {
+            
+            boolean titulua = false;
+            inputStream = new BufferedReader(new FileReader("Mendiak.csv"));
+            outputStreamBizkaia = new PrintWriter(new FileWriter("BizkaiaMendiak.csv"));
+            outputStreamAraba = new PrintWriter(new FileWriter("ArabaMendiak.csv"));
+            outputStreamNafarroa = new PrintWriter(new FileWriter("NafarroaMendiak.csv"));
+            outputStreamGipuzkoa = new PrintWriter(new FileWriter("GipuzkoaMendiak.csv"));
+
+            String l;
+            while ((l = inputStream.readLine()) != null) {
+                if(!titulua){
+                    outputStreamBizkaia.println(l);
+                    outputStreamAraba.println(l);
+                    outputStreamNafarroa.println(l);
+                    outputStreamGipuzkoa.println(l);
+                    titulua = true;
+                }
+                String[] parts = l.split(";");
+                kokalekua = parts[2];
+
+                switch (kokalekua) {
+                    case "Bizkaia":
+                    outputStreamBizkaia.println(l);
+                        break;
+                    case "Araba":
+                    outputStreamAraba.println(l);
+                        break;
+                    case "Nafarroa":
+                    outputStreamNafarroa.println(l);
+                        break;
+                    case "Gipuzkoa":
+                    outputStreamGipuzkoa.println(l);
+                        break;
+                    default:
+                }
+            }
+        } catch (FileNotFoundException exception) {
+            System.out.println("Fitxategia ez da aurkitu");
+        } finally {
+            if (inputStream != null) {
+                inputStream.close();
+            }
+            if (outputStreamBizkaia != null) {
+                outputStreamBizkaia.close();
+            }
+            if (outputStreamAraba != null) {
+                outputStreamAraba.close();
+            }
+            if (outputStreamNafarroa != null) {
+                outputStreamNafarroa.close();
+            }
+            if (outputStreamGipuzkoa != null) {
+                outputStreamGipuzkoa.close();
+            }
         }
     }
 
