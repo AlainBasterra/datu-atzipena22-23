@@ -100,8 +100,9 @@ public class MainMenua {
 
                         } catch (Exception e) {
                             kokalekua = sc.next();
+                        } finally {
+                            kokalekuaF = kokalekua;
                         }
-                        kokalekuaF = kokalekua;
 
                     }
                 }
