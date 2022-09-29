@@ -43,22 +43,49 @@ public class MainMenua {
         in.next();
     }
 
-    public static void met1() {
+    public static void met1() throws IOException {
+        String izena;
+        String altuera;
+        String kokalekua;
+        int tarteak;
+        BufferedReader inputStream = null;
+
         try {
-            Scanner sc = new Scanner(new File("Mendiak.csv"));
-            sc.useDelimiter(";");
-            while (sc.hasNext()) {
-                System.out.print(sc.next());
+            inputStream = new BufferedReader(new FileReader("Mendiak.csv"));
 
-                if (sc.hasNext()) {
-                    System.out.print(" | ");
+            String l;
+            while ((l = inputStream.readLine()) != null) {
+
+                String[] parts = l.split(";");
+                izena = parts[0];
+                altuera = parts[1];
+                kokalekua = parts[2];
+
+                // Izena
+                tarteak = 13 - izena.length();
+                System.out.print(izena);
+                while (tarteak > 0) {
+                    System.out.print(" ");
+                    tarteak--;
                 }
+                System.out.print("| ");
 
+                // Altuera
+                tarteak = 9 - altuera.length();
+                System.out.print(altuera);
+                while (tarteak > 0) {
+                    System.out.print(" ");
+                    tarteak--;
+                }
+                System.out.print("| ");
+
+                // kokalekua
+                System.out.println(kokalekua);
             }
-            sc.close();
-
         } catch (FileNotFoundException exception) {
             System.out.println("Fitxategia ez da aurkitu");
+        } finally {
+
         }
 
     }
@@ -130,7 +157,7 @@ public class MainMenua {
         String kokalekua;
 
         try {
-            
+
             boolean titulua = false;
             inputStream = new BufferedReader(new FileReader("Mendiak.csv"));
             outputStreamBizkaia = new PrintWriter(new FileWriter("BizkaiaMendiak.csv"));
@@ -140,7 +167,7 @@ public class MainMenua {
 
             String l;
             while ((l = inputStream.readLine()) != null) {
-                if(!titulua){
+                if (!titulua) {
                     outputStreamBizkaia.println(l);
                     outputStreamAraba.println(l);
                     outputStreamNafarroa.println(l);
@@ -152,16 +179,16 @@ public class MainMenua {
 
                 switch (kokalekua) {
                     case "Bizkaia":
-                    outputStreamBizkaia.println(l);
+                        outputStreamBizkaia.println(l);
                         break;
                     case "Araba":
-                    outputStreamAraba.println(l);
+                        outputStreamAraba.println(l);
                         break;
                     case "Nafarroa":
-                    outputStreamNafarroa.println(l);
+                        outputStreamNafarroa.println(l);
                         break;
                     case "Gipuzkoa":
-                    outputStreamGipuzkoa.println(l);
+                        outputStreamGipuzkoa.println(l);
                         break;
                     default:
                 }
