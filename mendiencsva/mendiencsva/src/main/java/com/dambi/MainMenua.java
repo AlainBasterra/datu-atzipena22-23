@@ -43,7 +43,7 @@ public class MainMenua {
         in.next();
     }
 
-    public static void met1() throws IOException {
+    public static void met1() throws IOException  {
         String izena;
         String altuera;
         String kokalekua;
@@ -84,9 +84,7 @@ public class MainMenua {
             }
         } catch (FileNotFoundException exception) {
             System.out.println("Fitxategia ez da aurkitu");
-        } finally {
-
-        }
+        } 
 
     }
 

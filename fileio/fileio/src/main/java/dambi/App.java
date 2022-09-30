@@ -3,10 +3,6 @@ package dambi;
 import java.util.Scanner;
 import java.io.*;
 
-/**
- * Hello world!
- *
- */
 public class App {
     public static Scanner in;
     public static void main(String[] args) throws Exception {
@@ -56,6 +52,20 @@ public class App {
     }
 
     public static void met2() {
+        
+        System.out.println("Sartu path bat:");
+        
+        File karpeta = new File(in.next());
+        String[] lista = karpeta.list();
+        if (lista == null || lista.length == 0) {
+            System.out.print("Ez dago elementurik karpetan");
+            return;
+        }
+        else {
+            for (int i=0; i< lista.length; i++) {
+                System.out.println(lista[i]);
+            }
+        }
 
     }
 
