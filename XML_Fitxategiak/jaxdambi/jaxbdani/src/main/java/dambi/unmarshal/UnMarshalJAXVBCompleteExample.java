@@ -17,10 +17,11 @@ public class UnMarshalJAXVBCompleteExample
 {
     public static void main( String[] args )
     {
-
+        System.out.println("_______________" + new File("").getAbsolutePath());
         try
         {
 
+            
             File file = new File( "countries.xml" );
             JAXBContext jaxbContext = JAXBContext.newInstance( Countries.class );
 

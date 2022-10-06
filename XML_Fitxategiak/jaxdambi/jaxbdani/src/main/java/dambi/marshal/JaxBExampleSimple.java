@@ -14,37 +14,33 @@ import dambi.business.Country;
  * 
  * @author dgutierrez-diez
  */
-public class JaxBExampleSimple
-{
+public class JaxBExampleSimple {
 
-    public static void main( String[] args )
-    {
-        try
-        {
+    public static void main(String[] args) {
+        try {
 
             /* init very simple data to marshal */
             Country spain = new Country();
-            spain.setName( "Spain" );
-            spain.setCapital( "Madrid" );
-            spain.setContinent( "Europe" );
-            spain.setFoundation( LocalDate.of( 1469, 10, 19 ) );
+            spain.setName("Spain");
+            spain.setCapital("Madrid");
 
-            
-            spain.setPopulation( 45000000 );
+            spain.setImportance(1);
+            spain.setContinent("Europe");
+            spain.setFoundation(LocalDate.of(1469, 10, 19));
+
+            spain.setPopulation(45000000);
 
             /* init jaxb marshaler */
-            JAXBContext jaxbContext = JAXBContext.newInstance( Country.class );
+            JAXBContext jaxbContext = JAXBContext.newInstance(Country.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
             /* set this flag to true to format the output */
-            jaxbMarshaller.setProperty( Marshaller.JAXB_FORMATTED_OUTPUT, true );
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
             /* marshaling of java objects in xml (output to file and standard output) */
-            jaxbMarshaller.marshal( spain, new File( "country.xml" ) );
-            jaxbMarshaller.marshal( spain, System.out );
-        }
-        catch( JAXBException e )
-        {
+            jaxbMarshaller.marshal(spain, new File("country.xml"));
+            jaxbMarshaller.marshal(spain, System.out);
+        } catch (JAXBException e) {
             e.printStackTrace();
         }
 
