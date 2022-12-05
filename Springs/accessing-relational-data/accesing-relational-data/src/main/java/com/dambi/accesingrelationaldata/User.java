@@ -1,11 +1,19 @@
 package com.dambi.accesingrelationaldata;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.websocket.Session;
 
 @Entity // This tells Hibernate to make a table out of this class
+@Table(name="Erabiltzailea")
 public class User {
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
@@ -14,6 +22,9 @@ public class User {
   private String name;
 
   private String email;
+
+@OneToMany(mappedBy = "user",cascade = CascadeType.ALL, orphanRemoval = true)
+private List<Session> sessions = new ArrayList<>();
 
   public Integer getId() {
     return id;
